@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YGLABZ | Private Creator Operations</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-main: #000000;
+            --text-muted: #6b7280;
+            --border-color: #e5e7eb;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        .grid-bg {
+            background-image: radial-gradient(circle at 1px 1px, #f3f4f6 1px, transparent 0);
+            background-size: 40px 40px;
+        }
+
+        /* Explicit Interaction & Visibility Correctness - Per Requirement */
+        form, form *, input, textarea, select, button {
+            pointer-events: auto !important;
+            z-index: 10 !important;
+            position: relative;
+            /* Reset any potential inherited blocking styles */
+            visibility: visible !important;
+            opacity: 1 !important;
+        }
+
+        /* Premium Dark-Mode Form Fields Visibility Fix */
+        #audit-form input, 
+        #audit-form textarea {
+            color: #ffffff !important;
+            background-color: #111111 !important; /* Dark, non-black for contrast */
+            caret-color: #ffffff !important; /* White cursor */
+            border-color: #333333 !important;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            border-radius: 0;
+            transition: border-color 0.3s ease, background-color 0.3s ease;
+        }
+
+        #audit-form input:focus, 
+        #audit-form textarea:focus {
+            outline: none;
+            border-color: #ffffff !important;
+            background-color: #1a1a1a !important;
+        }
+
+        #audit-form input::placeholder, 
+        #audit-form textarea::placeholder {
+            color: #4b5563 !important; /* Lighter gray for readability */
+            font-weight: 300;
+        }
+
+        .section-padding {
+            padding-top: 8rem;
+            padding-bottom: 8rem;
+        }
+
+        .nav-blur {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #fff;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #000;
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 640px) {
+            input, textarea {
+                font-size: 16px !important; /* Prevents mobile browser zoom on focus */
+            }
+        }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.3",
+    "react/": "https://esm.sh/react@^19.2.3/"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body class="grid-bg">
+
+    <nav class="fixed top-0 left-0 w-full z-[100] border-b border-gray-100 nav-blur">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="#hero" class="text-xl font-semibold tracking-tighter uppercase">YGLABZ</a>
+            <div class="hidden md:flex items-center space-x-12 text-[10px] font-medium uppercase tracking-[0.3em] text-gray-500">
+                <a href="#what-we-do" class="hover:text-black transition-colors">What We Do</a>
+                <a href="#how-it-works" class="hover:text-black transition-colors">How It Works</a>
+                <a href="#proof" class="hover:text-black transition-colors">Proof</a>
+                <a href="#apply" class="px-6 py-2.5 border border-black text-black hover:bg-black hover:text-white transition-all duration-300">Apply</a>
+            </div>
+            <div class="md:hidden">
+                <a href="#apply" class="text-[10px] font-bold uppercase tracking-widest border-b border-black">Audit</a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="hero" class="pt-48 pb-32 px-6 fade-in">
+        <div class="max-w-4xl mx-auto">
+            <div class="inline-block px-3 py-1 border border-gray-200 text-[10px] uppercase tracking-[0.3em] text-gray-400 mb-8">
+                Private Creator Operations
+            </div>
+            <h1 class="text-5xl md:text-8xl font-semibold leading-[1.05] tracking-tight text-gray-900 mb-10">
+                Predictable revenue systems for creators
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-500 leading-relaxed max-w-2xl mb-14 font-light">
+                We build backend monetisation infrastructure so creators earn consistently without posting more.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6">
+                <a href="#apply" class="w-full sm:w-auto px-10 py-5 bg-black text-white text-[10px] font-bold uppercase tracking-[0.4em] hover:bg-gray-800 transition-all text-center">
+                    Request a Private Audit
+                </a>
+                <a href="https://calendly.com/yglabz/intro" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-10 py-5 border border-gray-300 text-[10px] font-bold uppercase tracking-[0.4em] hover:border-black transition-all text-center">
+                    Schedule a Call
+                </a>
+            </div>
+
+            <div class="mt-32 pt-12 border-t border-gray-100 flex flex-col md:flex-row md:items-center justify-between gap-8">
+                <div class="flex flex-col gap-1">
+                    <span class="text-[10px] uppercase tracking-[0.2em] text-gray-400">Core Belief</span>
+                    <span class="text-lg font-medium">Attention is not a business. Systems are.</span>
+                </div>
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-[1px] bg-gray-200"></div>
+                    <span class="text-sm text-gray-400 italic font-light">Operating Globally</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="what-we-do" class="section-padding px-6 bg-white fade-in">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-24">
+                <h2 class="text-[10px] uppercase tracking-[0.4em] text-gray-400 mb-6">What We Do</h2>
+                <p class="text-4xl md:text-5xl font-medium tracking-tight max-w-3xl leading-tight">Backend systems designed for precision.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-20 gap-y-16">
+                <div class="border-l border-gray-100 pl-10 py-4 hover:border-black transition-colors duration-500">
+                    <h3 class="text-xl font-medium mb-5">Monetisation Strategy & Offer Design</h3>
+                    <p class="text-gray-500 leading-relaxed font-light">Engineering high-ticket ecosystems that leverage existing attention without increasing delivery overhead.</p>
+                </div>
+                <div class="border-l border-gray-100 pl-10 py-4 hover:border-black transition-colors duration-500">
+                    <h3 class="text-xl font-medium mb-5">Funnels & Revenue Infrastructure</h3>
+                    <p class="text-gray-500 leading-relaxed font-light">Building custom backend architecture to capture, nurture, and convert high-intent prospects at scale.</p>
+                </div>
+                <div class="border-l border-gray-100 pl-10 py-4 hover:border-black transition-colors duration-500">
+                    <h3 class="text-xl font-medium mb-5">Automation & Backend Systems</h3>
+                    <p class="text-gray-500 leading-relaxed font-light">Removing the creator from the daily operation through custom-built tools and streamlined SOPs.</p>
+                </div>
+                <div class="border-l border-gray-100 pl-10 py-4 hover:border-black transition-colors duration-500">
+                    <h3 class="text-xl font-medium mb-5">Long-Term Income Architecture</h3>
+                    <p class="text-gray-500 leading-relaxed font-light">Designing sustainable revenue models that decouple income from personal posting frequency.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="how-it-works" class="section-padding px-6 bg-gray-50 fade-in">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-24">
+                <h2 class="text-[10px] uppercase tracking-[0.4em] text-gray-400 mb-6">How It Works</h2>
+                <p class="text-4xl md:text-5xl font-medium tracking-tight max-w-3xl leading-tight">A structured path to systemized revenue.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+                <div class="flex flex-col gap-8">
+                    <div class="text-[10px] font-bold tracking-widest text-gray-300 border-b border-gray-200 pb-4">PHASE 01</div>
+                    <h3 class="text-lg font-medium mb-1">Private Audit</h3>
+                    <p class="text-sm text-gray-500 leading-relaxed font-light">Deep-dive analysis of assets, demographics, and leaking revenue.</p>
+                </div>
+                <div class="flex flex-col gap-8">
+                    <div class="text-[10px] font-bold tracking-widest text-gray-300 border-b border-gray-200 pb-4">PHASE 02</div>
+                    <h3 class="text-lg font-medium mb-1">Blueprint</h3>
+                    <p class="text-sm text-gray-500 leading-relaxed font-light">Architectural design of the system and high-yield offer stack.</p>
+                </div>
+                <div class="flex flex-col gap-8">
+                    <div class="text-[10px] font-bold tracking-widest text-gray-300 border-b border-gray-200 pb-4">PHASE 03</div>
+                    <h3 class="text-lg font-medium mb-1">Build & Deploy</h3>
+                    <p class="text-sm text-gray-500 leading-relaxed font-light">Implementation of infrastructure, funnels, and automations.</p>
+                </div>
+                <div class="flex flex-col gap-8">
+                    <div class="text-[10px] font-bold tracking-widest text-gray-300 border-b border-gray-200 pb-4">PHASE 04</div>
+                    <h3 class="text-lg font-medium mb-1">Scale</h3>
+                    <p class="text-sm text-gray-500 leading-relaxed font-light">Continuous system iteration to maximize yield and minimize manual input.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="proof" class="section-padding px-6 bg-white fade-in">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-24">
+                <div>
+                    <h2 class="text-[10px] uppercase tracking-[0.4em] text-gray-400 mb-6">Observed Patterns</h2>
+                    <p class="text-4xl font-medium tracking-tight mb-12">Credibility through execution.</p>
+                    <p class="text-gray-500 leading-relaxed font-light mb-10 text-lg">
+                        Our work is rooted in systems engineering and mathematical yield models. By treating a creator's audience as a high-fidelity data source, we predict outcomes before deployment.
+                    </p>
+                    <div class="p-10 bg-gray-50 border border-gray-100">
+                        <ul class="space-y-4 text-sm text-gray-800 font-light">
+                            <li class="flex items-center gap-3">Audience Intent Heatmapping</li>
+                            <li class="flex items-center gap-3">Friction-Zero Conversion Modeling</li>
+                            <li class="flex items-center gap-3">Asset-to-Outcome Efficiency Index</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="flex flex-col justify-center gap-16">
+                    <div class="border-l-4 border-black pl-10">
+                        <span class="text-[10px] uppercase tracking-[0.3em] text-gray-400 mb-3 block font-bold">Anonymized Case A</span>
+                        <p class="text-xl text-gray-800 leading-relaxed font-light italic">
+                            "Shifted an established creator from launch cycles to an automated high-ticket backend, removing stress while increasing net margin."
+                        </p>
+                    </div>
+                    <div class="border-l-4 border-black pl-10">
+                        <span class="text-[10px] uppercase tracking-[0.3em] text-gray-400 mb-3 block font-bold">Anonymized Case B</span>
+                        <p class="text-xl text-gray-800 leading-relaxed font-light italic">
+                            "Systematized media operations, reducing content output by 40% while doubling conversion rate through audience segmenting."
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Application Section: Updated to Premium Dark Mode for Form Visibility -->
+    <section id="apply" class="section-padding px-6 bg-black text-white fade-in">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-24">
+                <h2 class="text-[10px] uppercase tracking-[0.4em] text-gray-500 mb-6">Private Audit</h2>
+                <p class="text-4xl md:text-5xl font-medium tracking-tight leading-tight">Apply for a systems review.</p>
+            </div>
+
+            <div id="form-success" class="hidden p-16 border border-zinc-800 bg-zinc-950 text-center mb-10">
+                <h3 class="text-2xl font-medium mb-4">Application Sent</h3>
+                <p class="text-gray-400 mb-8 font-light">We will review your profile and respond within 48 hours.</p>
+                <button onclick="resetForm()" class="text-[10px] uppercase tracking-[0.2em] font-bold border-b border-white pb-1">New Application</button>
+            </div>
+
+            <form id="audit-form" onsubmit="handleFormSubmit(event)" class="space-y-12">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <div class="flex flex-col gap-3">
+                        <label class="text-[10px] uppercase tracking-[0.2em] text-gray-500 font-bold">Full Name</label>
+                        <input required type="text" name="name" id="name" placeholder="John Doe" class="border-b py-4 font-light text-lg">
+                    </div>
+                    <div class="flex flex-col gap-3">
+                        <label class="text-[10px] uppercase tracking-[0.2em] text-gray-500 font-bold">Email Address</label>
+                        <input required type="email" name="email" id="email" placeholder="john@example.com" class="border-b py-4 font-light text-lg">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <div class="flex flex-col gap-3">
+                        <label class="text-[10px] uppercase tracking-[0.2em] text-gray-500 font-bold">Primary Platform</label>
+                        <input required type="text" name="platform" id="platform" placeholder="YouTube, X, etc." class="border-b py-4 font-light text-lg">
+                    </div>
+                    <div class="flex flex-col gap-3">
+                        <label class="text-[10px] uppercase tracking-[0.2em] text-gray-500 font-bold">Audience Size</label>
+                        <input required type="text" name="audienceSize" id="audienceSize" placeholder="Total Reach" class="border-b py-4 font-light text-lg">
+                    </div>
+                </div>
+
+                <div class="flex flex-col gap-3">
+                    <label class="text-[10px] uppercase tracking-[0.2em] text-gray-500 font-bold">Current Revenue</label>
+                    <input required type="text" name="revenue" id="revenue" placeholder="Avg. Monthly Revenue" class="border-b py-4 font-light text-lg">
+                </div>
+
+                <div class="flex flex-col gap-3">
+                    <label class="text-[10px] uppercase tracking-[0.2em] text-gray-500 font-bold">Main Bottleneck</label>
+                    <textarea required name="bottleneck" id="bottleneck" rows="3" placeholder="What is your current limitation?" class="border-b py-4 font-light text-lg resize-none"></textarea>
+                </div>
+
+                <div class="pt-10">
+                    <button type="submit" class="w-full py-6 bg-white text-black text-[10px] font-bold uppercase tracking-[0.4em] hover:bg-gray-200 transition-all cursor-pointer">
+                        Submit Audit Request
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <footer class="bg-black text-white py-24 px-6 border-t border-zinc-900">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-16 mb-24">
+            <div>
+                <h2 class="text-3xl font-semibold tracking-tighter mb-6">YGLABZ</h2>
+                <p class="text-gray-500 max-w-xs text-sm font-light leading-relaxed uppercase tracking-tighter">
+                    Private Creator Operations.
+                </p>
+            </div>
+            <div class="flex flex-col gap-8">
+                <h3 class="text-[10px] uppercase tracking-[0.3em] text-gray-600 font-bold">Operations</h3>
+                <ul class="space-y-4 text-sm text-gray-400 font-light">
+                    <li>Operating Globally</li>
+                    <li>Strict Data Privacy</li>
+                </ul>
+            </div>
+            <div class="flex flex-col gap-8">
+                <h3 class="text-[10px] uppercase tracking-[0.3em] text-gray-600 font-bold">Contact</h3>
+                <a href="mailto:contact@yglabz.com" class="text-xl font-light hover:text-gray-300 transition-colors">contact@yglabz.com</a>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto pt-8 border-t border-zinc-900 flex justify-between items-center">
+            <p class="text-[10px] text-gray-700 uppercase tracking-widest">&copy; 2024 YGLABZ</p>
+            <div class="w-1.5 h-1.5 rounded-full bg-gray-800"></div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                const element = document.querySelector(targetId);
+                if (element) {
+                    window.scrollTo({
+                        top: element.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Form Submit
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const data = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                platform: document.getElementById('platform').value,
+                audience: document.getElementById('audienceSize').value,
+                revenue: document.getElementById('revenue').value,
+                bottleneck: document.getElementById('bottleneck').value
+            };
+
+            const subject = `YGLABZ Private Audit Request - ${data.name}`;
+            const body = `Name: ${data.name}\nEmail: ${data.email}\nPlatform: ${data.platform}\nAudience: ${data.audience}\nRevenue: ${data.revenue}\n\nBottleneck:\n${data.bottleneck}`;
+            
+            window.location.href = `mailto:contact@yglabz.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+            document.getElementById('audit-form').classList.add('hidden');
+            document.getElementById('form-success').classList.remove('hidden');
+        }
+
+        function resetForm() {
+            document.getElementById('audit-form').reset();
+            document.getElementById('audit-form').classList.remove('hidden');
+            document.getElementById('form-success').classList.add('hidden');
+        }
+
+        // Intersection Observer for animations
+        const obs = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+    </script>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>
